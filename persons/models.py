@@ -9,9 +9,12 @@ class Person(models.Model):
     photo =             models.ImageField(blank=True, null=True, upload_to='persons/person/photo', verbose_name='Фоточка')
     status =            models.CharField(blank=True, null=True, max_length=255, verbose_name='Статус на ЗМШ')
 
-    barcode =           models.ImageField(blank=True, null=False, upload_to='persons/person/barcode', verbose_name='Штрихкод')
+    barcode =           models.ImageField(blank=True, null=True, upload_to='persons/person/barcode', verbose_name='Штрихкод')
 
     date_create =       models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
+
+    def __str__(self):
+        return self.name
 
     def tryAchievement(self):
         import random

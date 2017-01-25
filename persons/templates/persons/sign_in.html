@@ -4,6 +4,7 @@
     <h1>Зарегистрируйся или попадешь в ад</h1>
     <form method="post">
         {{ form }}
+        {% csrf_token %}
         <input type="submit" value="Регистрация">
     </form>
 {% endblock %}
