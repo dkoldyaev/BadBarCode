@@ -9,7 +9,7 @@ class Person(models.Model):
     photo =             models.TextField(blank=True, null=True, verbose_name='Фоточка')
     status =            models.CharField(blank=True, null=True, max_length=255, verbose_name='Статус на ЗМШ')
 
-    barcode =           models.ImageField(blank=True, null=True, upload_to='persons/person/barcode', verbose_name='Штрихкод')
+    barcode =           models.CharField(blank=True, null=True, max_length=255, upload_to='persons/person/barcode', verbose_name='Штрихкод')
 
     date_create =       models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
 
