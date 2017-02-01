@@ -197,3 +197,8 @@ input {
 .finalSubmit:hover {
 	background-color: #616161;
 }
+
+
+#id_photo {
+	display:none;
+}

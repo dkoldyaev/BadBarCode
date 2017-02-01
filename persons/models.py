@@ -5,11 +5,9 @@ from django.db import models
 class Person(models.Model):
 
     name =              models.CharField(blank=False, null=False, max_length=255, verbose_name='ФИО')
-    age =               models.PositiveIntegerField(blank=False, null=False, verbose_name='Возраст')
+    number =		models.CharField(blank=False, null=False, max_length=255, verbose_name='Штрихкод')
+    comment =		models.CharField(blank=False, null=False, max_length=255, verbose_name='Смешной коммент')
     photo =             models.TextField(blank=True, null=True, verbose_name='Фоточка')
-    status =            models.CharField(blank=True, null=True, max_length=255, verbose_name='Статус на ЗМШ')
-
-    barcode =           models.CharField(blank=True, null=True, max_length=255, upload_to='persons/person/barcode', verbose_name='Штрихкод')
 
     date_create =       models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
 
