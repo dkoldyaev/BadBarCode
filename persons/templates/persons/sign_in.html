@@ -11,23 +11,9 @@
     		</div>
 				<div class="regform">
 	        <form method="POST" id="reg" class="regForm">
-<input
-	        		placeholder="Фамилия Имя"
-	        		type="text"
-	        		name="name"
-	        		autocomplete="off"
-	        		required>
-	        	<input
-	        		placeholder="Код"
-	        		type="number"
-	        		name="barcode"
-	        		autocomplete="off"
-	        		required>
-        		<input
-	        		placeholder="Смешной коммент"
-	        		type="text"
-	        		name="status"
-	        		autocomplete="off">
+
+			{{ form }}
+			
 	        	<input type="hidden"
 	        		name="photo"
 	        		id="photo">
@@ -39,8 +25,6 @@
 	        		class="finalSubmit"
 	        		type="submit"
 	        		value="Регистрация">
-
-{{ form }}
 
 		        {% csrf_token %}
 	        </form>

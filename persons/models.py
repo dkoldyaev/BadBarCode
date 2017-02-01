@@ -1,6 +1,7 @@
 __author__ = 'dkoldyaev'
 
 from django.db import models
+from django import forms
 
 class Person(models.Model):
 
