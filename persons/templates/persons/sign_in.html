@@ -1,10 +1,84 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Зарегистрируйся или попадешь в ад</h1>
-    <form method="post">
-        {{ form }}
-        {% csrf_token %}
-        <input type="submit" value="Регистрация">
-    </form>
+
+    <div class="wrap flex-row">
+    		<div class="webcam">
+	    		<div id="stream">
+	    			<video width="640" height="480" autoplay=""></video>
+	    		</div>
+			    <img id="preview" src="#"/>	
+    		</div>
+				<div class="regform">
+	        <form action="" method="POST" id="reg" class="regForm">
+			{{ form.name }}
+	        	{{ form.barcode }}
+			{{ form.status }}
+			{{ form.photo }}
+	        	<input id="finalSubmit"
+	        		class="finalSubmit"
+	        		type="submit"
+	        		value="Регистрация">
+		        {% csrf_token %}
+	        </form>
+	        <input id="capture"
+	        	class="capture"
+	        	type="submit"
+	        	value="Фото">
+				</div>
+    </div>
+    <script>
+    	const startVideo = stream => {
+    		const video = document.querySelector('#stream video');
+    		video.src = window.URL.createObjectURL(stream);
+    		video.play();
+    	};
+
+    	const stopVideo = stream => {
+    		const video = document.querySelector('#stream video');
+    		video.parentNode.removeChild(video);
+				// free memory before page unloading
+				window.URL.revokeObjectURL(stream);
+			}
+
+			const capture = () => {
+				// add canvas element
+				const canvas = document.createElement('canvas');
+				document.querySelector('body').appendChild(canvas);
+
+				// set canvas dimensions to video ones to not truncate picture
+				const videoElement = document.querySelector('#stream video');
+				canvas.width = videoElement.width;
+				canvas.height = videoElement.height;
+
+				// copy full video frame into the canvas
+				canvas.getContext('2d').drawImage(videoElement, 0, 0, videoElement.width, videoElement.height);
+
+				// get image data URL and remove canvas
+				const snapshot = canvas.toDataURL("image/png");
+				canvas.parentNode.removeChild(canvas);
+				// update grid picture source
+				document.querySelector('#preview').setAttribute('src', snapshot);
+				// update form feild
+				document.getElementById('photo').value = snapshot;
+			};
+
+			navigator.mozGetUserMedia({
+				video: true,
+				audio: false,
+				width: 640,
+				height: 480,
+				// el: 'stream', // render live video in #stream
+			}, stream => {
+				startVideo(stream);
+				document.getElementById('capture').addEventListener('click', () => {
+					capture();
+					stopVideo(stream);
+
+					document.getElementById('capture').style.display = 'none';
+					document.getElementById('finalSubmit').style.display = 'block';
+				});
+			}, err => console.error(err));
+    </script>
+
 {% endblock %}

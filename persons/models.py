@@ -6,7 +6,7 @@ class Person(models.Model):
 
     name =              models.CharField(blank=False, null=False, max_length=255, verbose_name='ФИО')
     age =               models.PositiveIntegerField(blank=False, null=False, verbose_name='Возраст')
-    photo =             models.ImageField(blank=True, null=True, upload_to='persons/person/photo', verbose_name='Фоточка')
+    photo =             models.TextField(blank=True, null=True, verbose_name='Фоточка')
     status =            models.CharField(blank=True, null=True, max_length=255, verbose_name='Статус на ЗМШ')
 
     barcode =           models.ImageField(blank=True, null=True, upload_to='persons/person/barcode', verbose_name='Штрихкод')
