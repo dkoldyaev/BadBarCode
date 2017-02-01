@@ -2,52 +2,32 @@
 
 {% block content %}
 
-	<div class="popup flash">
-		<span class="info">
-			<span class="info_name">Вася Пупкин Длинный</span>
-		</span>
-	</div>
+    {% if person %}
+        <div class="popup flash">
+            <span class="info">
+                <span class="info_name">{{ person.name }}</span>
+            </span>
+        </div>
+    {% endif %}
+
     <div class="wrap afterFlash">
     	<form id="form" class="scanForm">
         <input id="code" name="code" required autofocus autocomplete="off">
     	</form>
     	<div class="shortList">
-
-    		<div class="shortList_item">
-    			<img src="http://placehold.it/200x120">
-    			<span class="info">
-    				<span class="info_name">Вася Пупкин Длинный</span>
-  					<br>
-  					<span class="info_number">12</span>
-						<span class="info_code">1234</span>
-						<br>
-						<span class="info_time">12:30 01.02</span>
-  				</span>
-    		</div>
-
-    		<div class="shortList_item">
-    			<img src="http://placehold.it/200x120">
-    			<span class="info">
-    				<span class="info_name">Пьяный пекус</span>
-  					<br>
-  					<span class="info_number">122</span>
-						<span class="info_code">1254</span>
-						<br>
-						<span class="info_time">12:20 01.02</span>
-  				</span>
-    		</div>
-
-    		<div class="shortList_item">
-    			<img src="http://placehold.it/200x120">
-    			<span class="info">
-    				<span class="info_name">Ещё чувак</span>
-  					<br>
-  					<span class="info_number">2</span>
-						<span class="info_code">1434</span>
-						<br>
-						<span class="info_time">12:30 01.02</span>
-  				</span>
-    		</div>
+            {% for last_person in last_persons %}
+                <div class="shortList_item">
+                    <img src="base64:{{ last_person.photo }}">
+                    <span class="info">
+                        <span class="info_name">{{ last_person.name }}</span>
+                        <br>
+                        <span class="info_number">{{ last_person.id }}</span>
+                            <span class="info_code">{{ last_person.number }}</span>
+                            <br>
+                            <span class="info_time">{{ last_person.date_create }}</span>
+                    </span>
+                </div>
+            {% endfor %}
 
     	</div>
     </div>
