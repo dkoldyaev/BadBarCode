@@ -21,4 +21,9 @@ class PersonRegisterView(CreateView) :
     # fields = ['name', 'age', 'photo', 'status', 'barcode']
     fields = '__all__' #['name', 'age', 'photo', 'status', 'barcode']
     template_name = 'persons/sign_in.html'
-    success_url = '/person'
+    success_url = '/person/add'
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonRegisterView, self).get_context_data(**kwargs)
+        context['last_users'] = Person.objects.all().order_by('-date_create')[:4]
+        return context
