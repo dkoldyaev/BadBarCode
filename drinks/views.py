@@ -17,13 +17,18 @@ class DrinkView(View) :
             if code :
                 person = Person.objects.get(number=code)
             else :
-                person = None
+                person = None 
+                pass #person = None
         except Person.DoesNotExist:
+            with open('fucking-code.log', 'w') as log:
+                log.write(code+'\n')
             return redirect('/person/add')
 
         if code :
             drink = Drink(person=person)
             drink.save()
+
+        last_persons = Person.objects.all().order_by('-drinks__date')[:3]
 
         return render(
             request,
@@ -31,6 +36,7 @@ class DrinkView(View) :
             {
                 'code': code,
                 'person': person,
-                'last_persons': Person.objects.all().order_by('-date_create')[:3]
+                # 'last_persons': Person.objects.all().order_by('-date_create')[:3]
+                'last_persons': last_persons
             }
         )

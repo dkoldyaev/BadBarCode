@@ -10,6 +10,9 @@ class Drink(models.Model):
 
     def tryAchievement(self):
         return self.person.tryAchievement()
+    
+    def __str__(self):
+        return '%s (%s)' % (self.person.__str__(), self.date.__str__())
 
     class Meta:
         verbose_name = 'Дринк'

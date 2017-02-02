@@ -17,14 +17,14 @@
     	<div class="shortList">
             {% for last_person in last_persons %}
                 <div class="shortList_item">
-                    <img src="base64:{{ last_person.photo }}">
+                    <img src="{{ last_person.photo }}">
                     <span class="info">
                         <span class="info_name">{{ last_person.name }}</span>
                         <br>
-                        <span class="info_number">{{ last_person.id }}</span>
+                        <span class="info_number">{{ last_person.drinks.count }}</span>
                             <span class="info_code">{{ last_person.number }}</span>
                             <br>
-                            <span class="info_time">{{ last_person.date_create }}</span>
+                            <span class="info_time">{{ last_person.comment }}</span>
                     </span>
                 </div>
             {% endfor %}
