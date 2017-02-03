@@ -2,6 +2,7 @@ __author__ = 'dkoldyaev'
 
 from django.db import models
 from django import forms
+from drinks.models import Drink
 
 class Person(models.Model):
 
@@ -11,6 +12,11 @@ class Person(models.Model):
     photo =             models.TextField(blank=True, null=True, verbose_name='Фоточка')
 
     date_create =       models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
+    
+
+    @property
+    def drinks_count(self):
+        return Drink.objects.filter(person=self).count()
 
     def __str__(self):
         return self.name

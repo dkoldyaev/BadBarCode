@@ -22,7 +22,7 @@ class DrinkView(View) :
         except Person.DoesNotExist:
             with open('fucking-code.log', 'w') as log:
                 log.write(code+'\n')
-            return redirect('/person/add')
+            #return redirect('/person/add')
 
         if code :
             drink = Drink(person=person)
