@@ -21,6 +21,9 @@ class PersonAdmin(admin.ModelAdmin):
     drinks_amount.admin_order_field = 'drinks__count'  
 
     def image(self, obj):
-        return mark_safe('<img src="'+obj.photo+'" style="width:150px; height:auto;" />')
+        try:
+            return mark_safe('<img src="'+obj.photo+'" style="width:150px; height:auto;" />')
+        except:
+            return ''
         
 admin.site.register(Person, PersonAdmin)

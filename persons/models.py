@@ -10,7 +10,7 @@ class Person(models.Model):
     number =		models.CharField(blank=False, unique=True,  null=False, max_length=255, verbose_name='Штрихкод')
     comment =		models.CharField(blank=False, null=False, max_length=255, verbose_name='Смешной коммент')
     photo =             models.TextField(blank=True, null=True, verbose_name='Фоточка')
-    banned =            models.BooleanField(blank=False, null=False, default=False, verbose_name='Серёжа Кобяков')
+    banned =            models.BooleanField(blank=False, null=False, default=False, verbose_name='banned')
     date_create =       models.DateTimeField(auto_now_add=True, verbose_name='Дата регистрации')
     
 
