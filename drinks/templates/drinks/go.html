@@ -5,7 +5,11 @@
     {% if person %}
         <div class="popup flash">
             <span class="info">
-                <span class="info_name">{{ person.name }}</span>
+                {% if not person.banned %}
+                    <span class="info_name">{{ person.name }}</span>
+                {% else %}
+                    <span class="info_name" style="font-size: 300%; transform:scale(5); font-weight:bold; color:red; text-decoration:blink;">Ебать ты лох!</span>
+		{% endif %}
             </span>
         </div>
     {% endif %}

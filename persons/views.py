@@ -19,7 +19,8 @@ class PersonRegisterView(CreateView) :
 
     model = Person
     # fields = ['name', 'age', 'photo', 'status', 'barcode']
-    fields = '__all__' #['name', 'age', 'photo', 'status', 'barcode']
+    fields = ['name', 'number', 'comment'] #'__all__' #['name', 'age', 'photo', 'status', 'barcode']
+    exclude = ['banned']
     template_name = 'persons/sign_in.html'
     success_url = '/person/add'
 
