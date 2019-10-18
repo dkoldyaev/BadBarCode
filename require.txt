@@ -1,4 +1,4 @@
-Django==1.10.5
+Django==1.11.23
 html5lib==0.999
 pyBarcode==0.7
 requests==2.4.3
