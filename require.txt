@@ -1,5 +1,5 @@
 Django==1.10.5
-html5lib==0.999
+html5lib==0.999999999
 pyBarcode==0.7
 requests==2.4.3
 six==1.8.0
